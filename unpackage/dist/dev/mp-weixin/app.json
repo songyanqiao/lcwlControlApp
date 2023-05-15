@@ -1,0 +1,41 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/controlList/controlList",
+    "pages/controlDetail/controlDetail",
+    "pages/userCenter/userCenter",
+    "pages/addDeviceRecord/addDeviceRecord",
+    "pages/infoManage/infoManage",
+    "pages/settingSystem/settingSystem",
+    "pages/register/register"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "龙程网络监控系统",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "usingComponents": {
+    "van-button": "./wxcomponents/@vant/weapp/button/index",
+    "van-field": "./wxcomponents/@vant/weapp/field/index",
+    "van-cell-group": "./wxcomponents/@vant/weapp/cell-group/index",
+    "van-notice-bar": "./wxcomponents/@vant/weapp/notice-bar/index",
+    "van-notify": "./wxcomponents/@vant/weapp/notify/index",
+    "van-tabbar": "./wxcomponents/@vant/weapp/tabbar/index",
+    "van-tabbar-item": "./wxcomponents/@vant/weapp/tabbar-item/index",
+    "van-search": "./wxcomponents/@vant/weapp/search/index",
+    "van-cascader": "./wxcomponents/@vant/weapp/cascader/index",
+    "van-popup": "./wxcomponents/@vant/weapp/popup/index",
+    "van-calendar": "./wxcomponents/@vant/weapp/calendar/index",
+    "van-cell": "./wxcomponents/@vant/weapp/cell/index",
+    "van-datetime-picker": "./wxcomponents/@vant/weapp/datetime-picker/index",
+    "van-dialog": "./wxcomponents/@vant/weapp/dialog/index",
+    "van-picker": "./wxcomponents/@vant/weapp/picker/index",
+    "van-switch": "./wxcomponents/@vant/weapp/switch/index",
+    "van-uploader": "./wxcomponents/@vant/weapp/uploader/index",
+    "van-action-sheet": "./wxcomponents/@vant/weapp/action-sheet/index",
+    "van-dropdown-menu": "./wxcomponents/@vant/weapp/dropdown-menu/index",
+    "van-dropdown-item": "./wxcomponents/@vant/weapp/dropdown-item/index"
+  }
+}

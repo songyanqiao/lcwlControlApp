@@ -1,0 +1,78 @@
+
+.addButton {
+
+	position: fixed;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	bottom: 50px;
+	right: 50px;
+}
+.picker {
+	height: 30%;
+}
+.danger {
+	color: #ff0000;
+}
+.warning {
+	color: #ffaa00;
+}
+.primary {
+	color: #55ff00;
+}
+.content {
+
+	background-color: rgb(247, 248, 250);
+	width: 100%;
+	height: 667px;
+}
+.controlListBox {
+	width: 95%;
+	display: flex;
+
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.controlList {
+	width: 95%;
+}
+.controlBox .text {
+	padding: 5px;
+	color: #7f7f7f;
+	display: flex;
+	font-size: 14px;
+	justify-content: space-between;
+}
+.controlBox .text .left {}
+.controlBox .text .right {}
+.controlBox {
+	margin-top: 20px;
+	padding: 10px;
+	width: 100%;
+	box-shadow: 0 4px 8px 0 rgba(229, 229, 229, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.05);
+	border-radius: 10px;
+	background-color: #fff;
+}
+.pickerBox {
+	width: 90%;
+	display: flex;
+	background-color: #fff;
+	padding: 20px;
+	box-shadow: 0 4px 8px 0 rgba(229, 229, 229, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.05);
+}
+.pickerBox .title {
+	margin-right: 50px;
+	color: #7f7f7f;
+}
+.pickerBox .msg {
+	width: 50%;
+	margin-right: 50px;
+	color: #b4b4b4;
+	font-size: 13px;
+}
+.pickerBox .image {
+	width: 15px;
+	height: 15px;
+}
+

@@ -1,0 +1,25 @@
+
+.danger {
+	color: #ff0000 !important;
+}
+.warning {
+	color: #ffaa00;
+}
+.primary {
+	color: #55ff00;
+}
+.text {
+	padding: 5px;
+	color: #7f7f7f;
+	display: flex;
+	font-size: 14px;
+	margin: 20px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	justify-content: space-between;
+}
+.timePicker {
+
+	height: ;
+}
+

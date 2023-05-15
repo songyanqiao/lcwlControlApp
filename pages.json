@@ -1,0 +1,80 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		},{
+			"path": "pages/controlList/controlList",
+			"style": {
+				"navigationBarTitleText": "监控列表"
+			}
+		},{
+			"path": "pages/controlDetail/controlDetail",
+			"style": {
+				"navigationBarTitleText": "监控信息详情"
+			}
+		},{
+			"path": "pages/userCenter/userCenter",
+			"style": {
+				"navigationBarTitleText": "个人中心"
+			}
+		},{
+			"path": "pages/addDeviceRecord/addDeviceRecord",
+			"style": {
+				"navigationBarTitleText": "添加设备"
+			}
+		},{
+			"path": "pages/infoManage/infoManage",
+			"style": {
+				"navigationBarTitleText": "通知管理"
+			}
+		},{
+			"path": "pages/settingSystem/settingSystem",
+			"style": {
+				"navigationBarTitleText": "系统设置"
+			}
+		},{
+			"path": "pages/register/register",
+			"style": {
+				"navigationBarTitleText": "注册账号"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "龙程网络监控系统",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"usingComponents": {
+             "van-button": "./wxcomponents/@vant/weapp/button/index",
+			   "van-field": "./wxcomponents/@vant/weapp/field/index",
+				 "van-cell-group": "./wxcomponents/@vant/weapp/cell-group/index", 
+				 "van-notice-bar": "./wxcomponents/@vant/weapp/notice-bar/index",
+				  "van-notify": "./wxcomponents/@vant/weapp/notify/index", 
+				   "van-tabbar": "./wxcomponents/@vant/weapp/tabbar/index",
+                      "van-tabbar-item": "./wxcomponents/@vant/weapp/tabbar-item/index",
+					    "van-search": "./wxcomponents/@vant/weapp/search/index",
+					   "van-cascader": "./wxcomponents/@vant/weapp/cascader/index",
+					    "van-popup": "./wxcomponents/@vant/weapp/popup/index",
+					  "van-calendar": "./wxcomponents/@vant/weapp/calendar/index"
+					  ,  "van-cell": "./wxcomponents/@vant/weapp/cell/index",
+					  "van-datetime-picker": "./wxcomponents/@vant/weapp/datetime-picker/index"
+					  , "van-dialog": "./wxcomponents/@vant/weapp/dialog/index",
+					  "van-picker": "./wxcomponents/@vant/weapp/picker/index",
+					   "van-switch": "./wxcomponents/@vant/weapp/switch/index",
+					   "van-uploader": "./wxcomponents/@vant/weapp/uploader/index",
+					  "van-action-sheet": "./wxcomponents/@vant/weapp/action-sheet/index",
+					   "van-dropdown-menu": "./wxcomponents/@vant/weapp/dropdown-menu/index",
+					    "van-dropdown-item": "./wxcomponents/@vant/weapp/dropdown-item/index"
+					  
+}
+	},
+	"uniIdRouter": {},"easycom": {
+	"autoscan": true,
+	"custom": {
+		"fui-(.*)": "firstui-uni/firstui/fui-$1/fui-$1.vue"
+	}
+}
+}
