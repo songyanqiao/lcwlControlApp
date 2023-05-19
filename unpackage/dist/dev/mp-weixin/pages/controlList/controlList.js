@@ -284,6 +284,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var _config = __webpack_require__(/*! ../../config/config.js */ 28); //
 //
 //
@@ -430,7 +431,7 @@ var _config = __webpack_require__(/*! ../../config/config.js */ 28); //
 //
 //
 //
-var citys = { 'aaa': ['杭州', '宁波'], 'sss': ['福州', '厦门'], '1aaa': ['杭州', '宁波'], 's1ss': ['福州', '厦门'] };var project = [[['1', '1', '1'], ['11', '11', '11'], ['111', '111', '111']], [['2', '2', '2'], ['22', '22', '22'], ['222', '222', '222']]];var _default = { data: function data() {return { value1: '', value2: '', value3: '', option1: [{ text: '全部', value: '' }, { text: '充值未过期', value: 0 }, { text: '充值即将过期', value: 1 }, { text: '充值已过期', value: 2 }], option2: [{ text: '全部', value: '' }, { text: '已启用', value: 0 }, { text: '不启用', value: 1 }], option3: [{ text: '全部', value: '' }, { text: '合同未过期', value: 0 }, { text: '合同即将过期', value: 1 }, { text: '合同已过期', value: 2 }], searchValue: '', columns: [{ values: Object.keys(citys), className: 'column1' }, { values: citys['aaa'], className: 'column2', defaultIndex: 0 }, { values: project[0][0], className: 'column3', defaultIndex: 0 }], show: false, fieldValue: '', cascaderValue: '', active: 0, code: '', index: 0, indexArray: [], fieldNames: { text: 'name', value: 'code', children: 'items' }, recordList: [], listData: [] };}, onShow: function onShow() {this.getRecordList('');this.getSelectDataList();}, methods: { filter: function filter(condition, data) {return data.filter(function (item) {return Object.keys(condition).every(function (key) {return String(item[key]).toLowerCase().includes(String(condition[key]).trim().toLowerCase());});});}, getSelectAll: function getSelectAll() {this.value1 = 0;this.value2 = 0;this.value3 = 0;this.recordList = this.listData;}, onCloseAction: function onCloseAction(e) {console.log(e.detail);}, selecValue: function selecValue(e) {console.log(e);if (e.currentTarget.id == "value1") {
+var app = getApp();var citys = { 'aaa': ['杭州', '宁波'], 'sss': ['福州', '厦门'], '1aaa': ['杭州', '宁波'], 's1ss': ['福州', '厦门'] };var project = [[['1', '1', '1'], ['11', '11', '11'], ['111', '111', '111']], [['2', '2', '2'], ['22', '22', '22'], ['222', '222', '222']]];var _default = { data: function data() {return { value1: '', value2: '', value3: '', option1: [{ text: '全部', value: '' }, { text: '充值未过期', value: 0 }, { text: '充值即将过期', value: 1 }, { text: '充值已过期', value: 2 }], option2: [{ text: '全部', value: '' }, { text: '已启用', value: 0 }, { text: '不启用', value: 1 }], option3: [{ text: '全部', value: '' }, { text: '合同未过期', value: 0 }, { text: '合同即将过期', value: 1 }, { text: '合同已过期', value: 2 }], searchValue: '', columns: [{ values: Object.keys(citys), className: 'column1' }, { values: citys['aaa'], className: 'column2', defaultIndex: 0 }, { values: project[0][0], className: 'column3', defaultIndex: 0 }], show: false, fieldValue: '', cascaderValue: '', active: 0, code: '', index: 0, indexArray: [], fieldNames: { text: 'name', value: 'code', children: 'items' }, recordList: [], listData: [] };}, onShow: function onShow() {this.getRecordList('');this.getSelectDataList();}, methods: { filter: function filter(condition, data) {return data.filter(function (item) {return Object.keys(condition).every(function (key) {return String(item[key]).toLowerCase().includes(String(condition[key]).trim().toLowerCase());});});}, getSelectAll: function getSelectAll() {this.value1 = 0;this.value2 = 0;this.value3 = 0;this.recordList = this.listData;}, onCloseAction: function onCloseAction(e) {console.log(e.detail);}, selecValue: function selecValue(e) {console.log(e);if (e.currentTarget.id == "value1") {
         this.value1 = e.detail;
       } else if (e.currentTarget.id == "value2") {
         this.value2 = e.detail;
@@ -487,16 +488,25 @@ var citys = { 'aaa': ['杭州', '宁波'], 'sss': ['福州', '厦门'], '1aaa': 
 
 
 
-
+      console.log(app.globalData.userId, 9999);
 
 
       uni.request({
         url: 'https://song.lazion.cn/api/deviceInfo/query',
         method: 'get',
         data: {
-          searchValue: searchValue },
+          searchValue: searchValue,
+          userId: parseInt(app.globalData.userId) },
 
         success: function success(res) {
+          if (res.data.data == null) {
+            uni.showToast({
+              title: '无数据',
+              icon: 'none', //如果要纯文本，不要icon，将值设为'none'
+              duration: 2000 //持续时间为 2秒
+            });
+            return 0;
+          }
           console.log(res.data.data.reverse());
           _this.recordList = res.data.data.reverse();
           _this.listData = res.data.data.reverse();

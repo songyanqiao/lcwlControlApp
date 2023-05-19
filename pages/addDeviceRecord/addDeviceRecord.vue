@@ -65,7 +65,7 @@
 
 <script>
 	import Dialog from '../../wxcomponents/@vant/weapp/dialog/dialog';
-
+var app=getApp()
 	export default {
 		data() {
 			return {
@@ -287,7 +287,7 @@
 					})
 					.then(() => {
 						let data = {
-
+                             userId:parseInt(app.globalData.userId),
 							address: this.address,
 							cardOverdueTime: this.cardOverdueTime,
 							corporation: this.corporation,
@@ -334,7 +334,7 @@ data.installOverdueTime=data.installOverdueTime.replaceAll('/','-')
 data.installTime=data.installTime.replaceAll('/','-')
 console.log(1111)
 						uni.request({
-							url: 'https://song.lazion.cn/api/deviceInfo/add|revise',
+							url: 'https://song.lazion.cn/api/deviceInfo/add',
 							method: 'post',
 							data: data,
 							headers: { //放body要时，Content-Tpye为application/json，默认值也是这个
@@ -343,35 +343,23 @@ console.log(1111)
 							},
 						success: res => {
 							console.log(res.data,1111)
-							if(res.data.data.length==0){
+							if(res.data.data==true){
 						uni.showToast({
-							title: '修改成功',
+							title: '添加成功',
 							icon: 'none', //如果要纯文本，不要icon，将值设为'none'
 							duration: 2000 //持续时间为 2秒
 						})
 							
-							// uni.navigateBack()
-							}
-						else {
-							let IotCard	=''													
-							 let Dandelion=''																																																					
-						for(let i=0;i<res.data.data.length;i++){							
-							if(res.data.data[i].sort=="IotCardId"){
-								 IotCard='物联网卡 地址:'+res.data.data[i].address
-							}
-							if(res.data.data[i].sort=="DandelionId"){
-								 Dandelion='蒲公英码 地址:'+res.data.data[i].address
-							}
-						}															
-							uni.showModal({
-								title:'卡号冲突',
-								content: IotCard+'    '+Dandelion,
-								showCancel: true, //如果要纯文本，不要icon，将值设为'none'
-								duration: 2000 //持续时间为 2秒
-							})
-						}
 							
-						
+							}
+							else  if(res.data.data==null){
+								
+								uni.showToast({
+									title: res.data.message,
+									icon: 'none', //如果要纯文本，不要icon，将值设为'none'
+									duration: 2000 //持续时间为 2秒
+								})
+						}
 						}
 							,fail() {
 								uni.showToast({

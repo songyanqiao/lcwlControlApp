@@ -226,9 +226,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _dialog = _interopRequireDefault(__webpack_require__(/*! ../../wxcomponents/@vant/weapp/dialog/dialog */ 37));
-var _config = __webpack_require__(/*! ../../config/config.js */ 28);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
+var _config = __webpack_require__(/*! ../../config/config.js */ 28);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
 
 
+var app = getApp();var _default =
 {
   data: function data() {var _ref;
     return _ref = {
@@ -435,16 +436,14 @@ var _config = __webpack_require__(/*! ../../config/config.js */ 28);function _in
 
     getDeviceDetail: function getDeviceDetail(id) {var _this = this;
 
-      console.log(id);
 
       uni.request({
         url: 'https://song.lazion.cn/api/deviceInfo/get',
         method: 'get',
         data: {
-          id: id },
+          id: id, userId: parseInt(app.globalData.userId) },
 
         success: function success(res) {
-          console.log(res.data);
 
           var data = res.data.data;
 
@@ -532,7 +531,7 @@ var _config = __webpack_require__(/*! ../../config/config.js */ 28);function _in
       then(function () {
 
         var data = {
-
+          userId: parseInt(app.globalData.userId),
           address: _this2.address,
           cardOverdueTime: _this2.cardOverdueTime,
           corporation: _this2.corporation,
@@ -583,7 +582,7 @@ var _config = __webpack_require__(/*! ../../config/config.js */ 28);function _in
         data.installTime = data.installTime.replaceAll('/', '-');
 
         uni.request({
-          url: 'https://song.lazion.cn/api/deviceInfo/add|revise',
+          url: 'https://song.lazion.cn/api/deviceInfo/revise',
           method: 'post',
           data: data,
           headers: { //放body要时，Content-Tpye为application/json，默认值也是这个
@@ -592,39 +591,23 @@ var _config = __webpack_require__(/*! ../../config/config.js */ 28);function _in
 
           success: function success(res) {
             console.log(res.data, 1111);
-            if (res.data.data == null) {
+            if (res.data.data == true) {
               uni.showToast({
                 title: '修改成功',
                 icon: 'none', //如果要纯文本，不要icon，将值设为'none'
                 duration: 2000 //持续时间为 2秒
               });
 
-              uni.navigateBack();
+
             } else
-            {
-              var IotCard;
-              var Dandelion;
+            if (res.data.data == null) {
 
-
-
-              for (var i = 0; i < res.data.data.length; i++) {
-
-                if (res.data.data[i].sort == "IotCardId") {
-                  IotCard = '物联网卡 地址:' + res.data.data[i].address;
-                }
-                if (res.data.data[i].sort == "DandelionId") {
-                  Dandelion = '蒲公英码 地址:' + res.data.data[i].address;
-                }
-              }
-              uni.showModal({
-                title: '卡号冲突',
-                content: IotCard + '    ' + Dandelion,
+              uni.showToast({
+                title: res.data.message,
                 icon: 'none', //如果要纯文本，不要icon，将值设为'none'
                 duration: 2000 //持续时间为 2秒
               });
             }
-
-
           },
           fail: function fail() {
             uni.showToast({
@@ -650,7 +633,7 @@ var _config = __webpack_require__(/*! ../../config/config.js */ 28);function _in
 
 
         var data = {
-          id: _this3.id };
+          id: _this3.id, userId: parseInt(app.globalData.userId) };
 
         console.log(data);
         uni.request({

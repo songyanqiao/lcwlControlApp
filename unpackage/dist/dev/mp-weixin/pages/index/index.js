@@ -199,13 +199,15 @@ var _notify = _interopRequireDefault(__webpack_require__(/*! ../../wxcomponents/
 //
 //
 //
-var _default = { data: function data() {return { title: 'Hello', phone: '', password: '' };}, onLoad: function onLoad() {}, methods: { changeValue: function changeValue(e) {console.log(e);if (e.currentTarget.id == "phone") {this.phone = e.detail;} else if (e.currentTarget.id == "password") {this.password = e.detail;}}, login: function login() {var a = new Uint8Array(6);console.log(a);var phone = this.phone;var password = this.password;uni.request({ url: 'https://song.lazion.cn/api/user/login', method: 'get',
+var app = getApp();var _default = { data: function data() {return { title: 'Hello', phone: '', password: '' };}, onLoad: function onLoad() {}, methods: { changeValue: function changeValue(e) {if (e.currentTarget.id == "phone") {this.phone = e.detail;} else if (e.currentTarget.id == "password") {this.password = e.detail;}}, login: function login() {var a = new Uint8Array(6);var phone = this.phone;var password = this.password;uni.request({ url: 'https://song.lazion.cn/api/user/login',
+        method: 'get',
         data: {
           userPassword: password,
           userAccount: phone },
 
         success: function success(res) {
-          console.log(res);
+
+          app.globalData.userId = res.data.data;
 
           if (res.data.code == 1) {
 

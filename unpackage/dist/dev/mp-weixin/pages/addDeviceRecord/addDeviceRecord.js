@@ -203,8 +203,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _dialog = _interopRequireDefault(__webpack_require__(/*! ../../wxcomponents/@vant/weapp/dialog/dialog */ 37));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
-
+var _dialog = _interopRequireDefault(__webpack_require__(/*! ../../wxcomponents/@vant/weapp/dialog/dialog */ 37));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
+var app = getApp();var _default =
 {
   data: function data() {var _ref;
     return _ref = {
@@ -426,7 +426,7 @@ var _dialog = _interopRequireDefault(__webpack_require__(/*! ../../wxcomponents/
 
       then(function () {
         var data = {
-
+          userId: parseInt(app.globalData.userId),
           address: _this.address,
           cardOverdueTime: _this.cardOverdueTime,
           corporation: _this.corporation,
@@ -473,7 +473,7 @@ var _dialog = _interopRequireDefault(__webpack_require__(/*! ../../wxcomponents/
         data.installTime = data.installTime.replaceAll('/', '-');
         console.log(1111);
         uni.request({
-          url: 'https://song.lazion.cn/api/deviceInfo/add|revise',
+          url: 'https://song.lazion.cn/api/deviceInfo/add',
           method: 'post',
           data: data,
           headers: { //放body要时，Content-Tpye为application/json，默认值也是这个
@@ -482,35 +482,23 @@ var _dialog = _interopRequireDefault(__webpack_require__(/*! ../../wxcomponents/
 
           success: function success(res) {
             console.log(res.data, 1111);
-            if (res.data.data.length == 0) {
+            if (res.data.data == true) {
               uni.showToast({
-                title: '修改成功',
+                title: '添加成功',
                 icon: 'none', //如果要纯文本，不要icon，将值设为'none'
                 duration: 2000 //持续时间为 2秒
               });
 
-              // uni.navigateBack()
+
             } else
-            {
-              var IotCard = '';
-              var Dandelion = '';
-              for (var i = 0; i < res.data.data.length; i++) {
-                if (res.data.data[i].sort == "IotCardId") {
-                  IotCard = '物联网卡 地址:' + res.data.data[i].address;
-                }
-                if (res.data.data[i].sort == "DandelionId") {
-                  Dandelion = '蒲公英码 地址:' + res.data.data[i].address;
-                }
-              }
-              uni.showModal({
-                title: '卡号冲突',
-                content: IotCard + '    ' + Dandelion,
-                showCancel: true, //如果要纯文本，不要icon，将值设为'none'
+            if (res.data.data == null) {
+
+              uni.showToast({
+                title: res.data.message,
+                icon: 'none', //如果要纯文本，不要icon，将值设为'none'
                 duration: 2000 //持续时间为 2秒
               });
             }
-
-
           },
           fail: function fail() {
             uni.showToast({

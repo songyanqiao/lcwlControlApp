@@ -30,6 +30,7 @@
 
 <script>
 	import Notify from '../../wxcomponents/@vant/weapp/notify/notify';
+	var app =getApp()
 	export default {
 		data() {
 			return {
@@ -43,7 +44,7 @@
 		},
 		methods: {
 			changeValue(e) {
-				console.log(e)
+			
 				if (e.currentTarget.id == "phone") {
 					this.phone = e.detail
 				} else if (e.currentTarget.id == "password") {
@@ -53,7 +54,7 @@
 			login() {
 
 				let a = new Uint8Array(6)
-				console.log(a)
+			
 				let phone = this.phone
 				let password = this.password
 
@@ -65,7 +66,8 @@
 						userAccount: phone
 					},
 					success: res => {
-						console.log(res)
+					
+app.globalData.userId=res.data.data
 
 						if (res.data.code == 1) {
 

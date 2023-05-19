@@ -145,6 +145,7 @@
 </template>
 
 <script>
+	var app=getApp()
 	import {
 		baseUrl
 	} from '../../config/config.js'
@@ -348,16 +349,25 @@
 
 
 
-
+console.log(app.globalData.userId,9999)
 
 
 				uni.request({
 					url: 'https://song.lazion.cn/api/deviceInfo/query',
 					method: 'get',
 					data: {
-						searchValue: searchValue
+						searchValue: searchValue,
+						userId:parseInt(app.globalData.userId)
 					},
 					success: res => {
+						if(res.data.data==null){
+							uni.showToast({
+								title: '无数据',
+								icon: 'none', //如果要纯文本，不要icon，将值设为'none'
+								duration: 2000 //持续时间为 2秒
+							})
+							return 0
+						}
 						console.log(res.data.data.reverse());
 						this.recordList = res.data.data.reverse()
 						this.listData = res.data.data.reverse()

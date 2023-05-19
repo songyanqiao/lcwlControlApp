@@ -90,6 +90,7 @@
 	import {
 		baseUrl
 	} from '../../config/config.js'
+	var app=getApp()
 	export default {
 		data() {
 			return {
@@ -296,17 +297,15 @@
 
 			getDeviceDetail(id) {
 
-				console.log(id)
-
+			
 				uni.request({
 					url: 'https://song.lazion.cn/api/deviceInfo/get',
 					method: 'get',
 					data: {
-						id: id
+						id: id,userId:parseInt(app.globalData.userId)
 					},
 					success: res => {
-						console.log(res.data);
-
+					
 						let data = res.data.data
 
 						this.address = data.address
@@ -393,7 +392,7 @@
 					.then(() => {
 
 						let data = {
-
+                            userId:parseInt(app.globalData.userId),
 							address: this.address,
 							cardOverdueTime: this.cardOverdueTime,
 							corporation: this.corporation,
@@ -444,7 +443,7 @@
 						data.installTime = data.installTime.replaceAll('/', '-')
 					
 						uni.request({
-							url: 'https://song.lazion.cn/api/deviceInfo/add|revise',
+							url: 'https://song.lazion.cn/api/deviceInfo/revise',
 							method: 'post',
 							data: data,
 							headers: { //放body要时，Content-Tpye为application/json，默认值也是这个
@@ -453,39 +452,23 @@
 							},
 							success: res => {
 								console.log(res.data,1111)
-								if(res.data.data==null){
+								if(res.data.data==true){
 							uni.showToast({
 								title: '修改成功',
 								icon: 'none', //如果要纯文本，不要icon，将值设为'none'
 								duration: 2000 //持续时间为 2秒
 							})
 								
-								uni.navigateBack()
+								
 								}
-								else {
-									let IotCard														
-									 let Dandelion																			
-							
-							
-							
-								for(let i=0;i<res.data.data.length;i++){
+								else  if(res.data.data==null){
 									
-									if(res.data.data[i].sort=="IotCardId"){
-										 IotCard='物联网卡 地址:'+res.data.data[i].address
-									}
-									if(res.data.data[i].sort=="DandelionId"){
-										 Dandelion='蒲公英码 地址:'+res.data.data[i].address
-									}
-								}															
-									uni.showModal({
-										title:'卡号冲突',
-										content: IotCard+'    '+Dandelion,
+									uni.showToast({
+										title: res.data.message,
 										icon: 'none', //如果要纯文本，不要icon，将值设为'none'
 										duration: 2000 //持续时间为 2秒
 									})
-								}
-								
-							
+							}
 							},
 							fail() {
 								uni.showToast({
@@ -511,7 +494,7 @@
 
 
 						let data = {
-							id: this.id
+							id: this.id,userId:parseInt(app.globalData.userId)
 						}
 						console.log(data)
 						uni.request({
